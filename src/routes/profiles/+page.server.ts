@@ -18,7 +18,7 @@ export async function load() {
       await seed()
       const { rows: names } = await db.query('SELECT * FROM names')
       return {
-        users: names
+        names: names
       }
     } 
 }
@@ -64,28 +64,34 @@ async function seed() {
 /** @type {import('./$types').Actions} */
 export const actions = {
 	
-  // update: async ({ request }) => {
-  //   const data = await request.formData();
-  //   const db = createPool({ connectionString: POSTGRES_URL })
-  //   const client = await db.connect();
-
-  //   const email = data.get('email');
-	// 	const name = data.get('name');
-
-  //   const updateUser = await client.sql`
-  //   UPDATE names
-  //   SET email = ${email}, name = ${name}
-  //   WHERE     ;`
-	
-	// 	return { success: true };
-	// },
+  update: async ({ request }) => {
+    const data = await request.formData();
+    const db = createPool({ connectionString: POSTGRES_URL });
+    const client = await db.connect();
+  
+    const email = data.get('email') as string | null;
+    const name = data.get('name') as string | null;
+    const id = data.get('id') as string | null;
+  
+    if (email && name && id) {
+      const updateUser = await client.sql`
+        UPDATE names
+        SET email = ${email}, name = ${name}
+        WHERE id = ${id};
+      `;
+      return { success: true };
+    } else {
+      return { success: false, error: 'Invalid data' };
+    }
+  },
+  
 
   delete: async ({ request }) => {
     const data = await request.formData();
     const db = createPool({ connectionString: POSTGRES_URL })
     const client = await db.connect();
 
-    const id = data.get('id');
+    const id = data.get('id') as number|null;
 
     const deleteUser = await client.sql`
     DELETE FROM names
@@ -99,8 +105,8 @@ export const actions = {
     const db = createPool({ connectionString: POSTGRES_URL })
     const client = await db.connect();
 
-    const email = data.get('email');
-		const name = data.get('name');
+    const email = data.get('email') as string|null ;
+		const name = data.get('name') as string|null;
 
     const createUser = await client.sql`
       INSERT INTO names (name, email)
@@ -110,6 +116,3 @@ export const actions = {
     return { success: true };
 	}
 };
-
-
-

@@ -1,4 +1,4 @@
-<nav class="bg-white border-gray-200">
+<nav class="bg-white border-gray-200 ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://tsoc.dev/TSoC_Favicon.svg" class="h-8" alt="TSoC Logo" />
@@ -16,8 +16,19 @@
             <a href="/" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0" aria-current="page">Home</a>
           </li>
           <li>
+          <li>
             <a href="/profiles" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Profiles</a>
           </li>
+          <li>
+            <a href="/rawWallet" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Raw Wallet</a>
+          </li>
+          <li>
+            <a href="/cloudWallet" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">cloud Wallet</a>
+          </li>
+          <li>
+            <a href="/bounty" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Bounty</a>
+          </li>
+         
         </ul>
       </div>
     </div>
